@@ -1,0 +1,86 @@
+:root {
+  --fundo: #eef1f5;
+  --painel: #ffffff;
+  --visor: #f4f6f9;
+  --texto: #1b2330;
+  --tecla: #e9edf3;
+  --tecla-hover: #dde3ec;
+  --aux: #cfd8e6;
+  --op: #1f3a5f;
+  --op-texto: #ffffff;
+  --foco: #2f6fdb;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fundo: #12161d;
+    --painel: #1b212b;
+    --visor: #141920;
+    --texto: #e8ecf2;
+    --tecla: #262e3a;
+    --tecla-hover: #313b4a;
+    --aux: #3a4658;
+    --op: #4a7fd1;
+    --op-texto: #ffffff;
+    --foco: #8ab4ff;
+  }
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  display: grid;
+  place-items: center;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+.calc {
+  width: min(92vw, 340px);
+  padding: 18px;
+  background: var(--painel);
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .12);
+}
+.visor {
+  min-height: 96px;
+  margin-bottom: 14px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  background: var(--visor);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.historico { min-height: 1.2em; font-size: .9rem; opacity: .6; }
+.resultado {
+  font-size: 2.2rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.teclas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+button {
+  height: 58px;
+  border: 0;
+  border-radius: 12px;
+  font: inherit;
+  font-size: 1.25rem;
+  color: var(--texto);
+  background: var(--tecla);
+  cursor: pointer;
+  transition: background .12s, transform .08s;
+}
+button:hover { background: var(--tecla-hover); }
+button:active { transform: scale(.96); }
+button:focus-visible { outline: 3px solid var(--foco); outline-offset: 2px; }
+button.aux { background: var(--aux); }
+button.op, button.igual { background: var(--op); color: var(--op-texto); }
+button.op:hover, button.igual:hover { filter: brightness(1.12); }
+button.op.ativo { outline: 3px solid var(--foco); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  button { transition: none; }
+}
